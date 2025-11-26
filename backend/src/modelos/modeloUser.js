@@ -30,4 +30,4 @@ const modeloUsuarios = sequelize.define('modeloUsuarios', {
   timestamps: false
 });
 
-// Relaciones
+export default modeloUsuarios;

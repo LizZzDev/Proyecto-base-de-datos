@@ -1,10 +1,9 @@
-// app.js
 import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
-//import mainRoutes from './rutas/index.js';
+import mainRoutes from './rutas/index.js';
 import { PORT } from './config/constantes.js';
 import sequelize from './config/db.js';
 dotenv.config(); 
@@ -12,10 +11,10 @@ dotenv.config();
 const app = express();
 
 // Middleware generales
-app.use(cors()); // permite peticiones desde otros dominios
-app.use(express.json()); // parsea JSON en body
-app.use(express.urlencoded({ extended: true })); // parsea formularios
-app.use(cookieParser()); // para sesiones y tokens
+app.use(cors()); 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); 
+app.use(cookieParser()); 
 
 // Sesiones
 app.use(
@@ -31,7 +30,7 @@ app.use(
 );
 
 //  Rutas principales
-//app.use('/api', mainRoutes);
+app.use('/api', mainRoutes);
 
 //  Ruta de prueba
 app.get('/', (req, res) => {

@@ -1,4 +1,4 @@
-import modeloUsuario  from "../../modelos/modeloUser";
+import modeloUsuarios  from "../../modelos/modeloUser.js";
 import bcrypt from 'bcrypt';
 
 /**
@@ -20,7 +20,7 @@ const iniciarSesion = async (req) =>  {
     const {correo, contrasena} = req;
 
     try {
-        const user = await modeloUsuario.findOne({ where: { correo } });
+        const user = await modeloUsuarios.findOne({ where: { correo } });
 
         if (!user) {
         return { success: false, message: 'Usuario no encontrado' };
@@ -36,7 +36,8 @@ const iniciarSesion = async (req) =>  {
 
     } catch (error) {
         console.error(error);
-        return { success: false, message: 'Error en el servicio de login' };
+        return { success: false, message: 'Error en el servicio de inicio de sesion' };
     }
 }
 
+export default iniciarSesion;
