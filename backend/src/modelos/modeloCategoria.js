@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/db.js';
-import Submission from './submission.model.js';
 
 const modeloCategoria = sequelize.define('modeloCategoria', {
    idcategoria: {
@@ -8,26 +7,15 @@ const modeloCategoria = sequelize.define('modeloCategoria', {
     primaryKey: true,
     autoIncrement: true
   },
-  documentstatus: {
+  titulo: {
     type: DataTypes.STRING(100),
     allowNull: true
   },
-  previousstatus: {
+  descripcion: {
     type: DataTypes.TEXT,
     allowNull: true
   }
 }, {
   tableName: 'categoria',
   timestamps: false
-});
-
-// Relaciones
-SubmissionHistory.belongsTo(Submission, {
-  foreignKey: 'idsubmission',
-  as: 'submission'
-});
-
-Submission.hasMany(SubmissionHistory, {
-  foreignKey: 'idsubmission',
-  as: 'history'
 });
