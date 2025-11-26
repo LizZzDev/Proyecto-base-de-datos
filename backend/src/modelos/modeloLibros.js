@@ -8,11 +8,11 @@ const modeloLibros = sequelize.define('modeloLibros', {
     primaryKey: true,
     autoIncrement: true
   },
-  autor: {
+  titulo: {
     type: DataTypes.STRING(100),
     allowNull: false
   },
-  titulo: {
+  autor: {
     type: DataTypes.STRING(100),
     allowNull: false
   },
@@ -20,12 +20,11 @@ const modeloLibros = sequelize.define('modeloLibros', {
     type: DataTypes.STRING(200),
     allowNull: false
   },
-  editorial: {
-    type: DataTypes.STRING(100),
+  fechapublicacion: {
+    type: DataTypes.DATE,
     allowNull: false
   },
-  
-  precio: {
+  paginas: {
     type: DataTypes.INTEGER,
     allowNull: false
   }

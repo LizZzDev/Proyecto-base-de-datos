@@ -1,4 +1,3 @@
-// associations.js
 import Usuario from './modeloUsuarios.js';
 import Libro from './modeloLibros.js';
 import Categoria from './modeloCategoria.js';
@@ -9,36 +8,29 @@ import Reserva from './modeloReserva.js';
 import Prestamo from './modeloPrestamos.js';
 import Notificacion from './modeloNotificaciones.js';
 
-// --- RELACIONES N:M (Libros <-> Categorias/Generos) ---
+// --- RELACIONES N:M 
 Categoria.belongsToMany(Libro, { through: LibroCategoria, foreignKey: 'idcategoria', otherKey: 'idlibro' });
 Libro.belongsToMany(Categoria, { through: LibroCategoria, foreignKey: 'idlibro', otherKey: 'idcategoria' });
 
 Genero.belongsToMany(Libro, { through: LibroGenero, foreignKey: 'idgenero', otherKey: 'idlibro' });
 Libro.belongsToMany(Genero, { through: LibroGenero, foreignKey: 'idlibro', otherKey: 'idgenero' });
 
-// --- RELACIONES 1:N (Usuarios <-> Prestamos/Reservas/Notif) ---
-
-// Un Usuario tiene muchas Reservas
+// --- RELACIONES 1:N 
 Usuario.hasMany(Reserva, { foreignKey: 'iduser' });
 Reserva.belongsTo(Usuario, { foreignKey: 'iduser' });
 
-// Un Libro tiene muchas Reservas (historico)
 Libro.hasMany(Reserva, { foreignKey: 'idlibro' });
 Reserva.belongsTo(Libro, { foreignKey: 'idlibro' });
 
-// Un Usuario tiene muchos Prestamos
 Usuario.hasMany(Prestamo, { foreignKey: 'iduser' });
 Prestamo.belongsTo(Usuario, { foreignKey: 'iduser' });
 
-// Un Libro tiene muchos Prestamos
 Libro.hasMany(Prestamo, { foreignKey: 'idlibro' });
 Prestamo.belongsTo(Libro, { foreignKey: 'idlibro' });
 
-// Un Usuario tiene muchas Notificaciones
 Usuario.hasMany(Notificacion, { foreignKey: 'iduser' });
 Notificacion.belongsTo(Usuario, { foreignKey: 'iduser' });
 
-// Exportar todo junto si lo necesitas
 export { 
     Usuario, Libro, Categoria, Genero, 
     LibroCategoria, LibroGenero, 
