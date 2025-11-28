@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Administración - Categorías</title>
+    <link rel="stylesheet" href="../css/admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+<aside id="admin-sidebar">
+    <h2 class="admin-logo"><i class="fas fa-book-reader"></i> Admin Panel</h2>
+    <nav>
+        <ul>
+            <li onclick="showAdminView(this, 'admin-dashboard-view')" data-view="admin-dashboard-view">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </li>
+            <li onclick="showAdminView(this, 'admin-books-view')" data-view="admin-books-view">
+                <i class="fas fa-book"></i> Gestionar Libros
+            </li>
+            <li onclick="showAdminView(this, 'admin-add-book-view')" data-view="admin-add-book-view">
+                <i class="fas fa-plus-circle"></i> Agregar Libro
+            </li>
+            <li onclick="showAdminView(this, 'admin-users-view')" data-view="admin-users-view">
+                <i class="fas fa-users-cog"></i> Usuarios
+            </li>
+            <li onclick="showAdminView(this, 'admin-loans-view')" data-view="admin-loans-view">
+                <i class="fas fa-clipboard-list"></i> Préstamos
+            </li>
+            <li onclick="showAdminView(this, 'admin-genres-view')" data-view="admin-genres-view">
+                <i class="fas fa-palette"></i> Géneros
+            </li>
+            <li onclick="showAdminView(this, 'admin-categories-view')" class="active" data-view="admin-categories-view">
+                <i class="fas fa-tags"></i> Categorías
+            </li>
+            <li onclick="showAdminView(this, 'admin-history-view')" data-view="admin-history-view">
+                <i class="fas fa-history"></i> Historial
+            </li>
+        </ul>
+    </nav>
+    <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+</aside>
+
+<main id="admin-main">
+    <header id="admin-main-header">
+        <h1 id="view-title">Categorías</h1>
+        <div class="header-actions">
+            <input type="text" placeholder="Buscar..." class="admin-search-main">
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- CATEGORÍAS - Layout flex para dos paneles -->
+    <section id="admin-categories-view" class="admin-view content-area" style="display: flex;">
+        <div class="left-panel standalone-panel">
+            <div class="panel-header">
+                <h3><i class="fas fa-tags"></i> Categorías</h3>
+                <span class="counter-badge" id="categoriesCount">0</span>
+            </div>
+            <div class="panel-content">
+                <div class="panel-actions">
+                    <button class="admin-btn primary-btn full-width" onclick="showAddForm('category')">
+                        <i class="fas fa-plus"></i> Agregar Categoría
+                    </button>
+                </div>
+                <div id="categoryList" class="items-list">
+                    <p class="placeholder-text">Cargando categorías...</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-panel standalone-panel">
+            <div class="panel-header">
+                <h3 id="categoryFormTitle"><i class="fas fa-plus-circle"></i> Añadir Categoría</h3>
+            </div>
+            <div class="panel-content">
+                <form id="adminCategoryForm" class="add-form">
+                    <div class="form-group">
+                        <label for="categoryName"><i class="fas fa-tag"></i> Nombre:</label>
+                        <input type="text" id="categoryName" required placeholder="Ej: Juvenil, Académico...">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryDescription"><i class="fas fa-align-left"></i> Descripción:</label>
+                        <textarea id="categoryDescription" rows="3" placeholder="Describe esta categoría..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-palette"></i> Paleta de Colores:</label>
+                        <div class="palettes-grid" id="colorPalettes"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" id="submitCategoryBtn" class="submit-btn full-width">
+                            <i class="fas fa-plus"></i> Crear Categoría
+                        </button>
+                        <button type="button" id="cancelEditBtn" class="admin-btn secondary-btn full-width" style="display: none; margin-top: 10px;">
+                            <i class="fas fa-times"></i> Cancelar Edición
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="../js/admin-common.js"></script>
+<script src="../js/categorias-generos.js"></script>
+</body>
+</html>
