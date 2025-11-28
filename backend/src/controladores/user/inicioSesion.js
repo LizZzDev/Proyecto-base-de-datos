@@ -17,7 +17,7 @@ import bcrypt from 'bcrypt';
 */
 
 const iniciarSesion = async (req) =>  {
-    const {correo, contrasena} = req;
+    const {correo, contrasena} = req.body;
 
     try {
         const user = await modeloUsuarios.findOne({ where: { correo } });
